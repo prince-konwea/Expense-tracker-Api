@@ -37,3 +37,15 @@ exports.getExpenses = async (req, res) => {
       res.status(500).json({message: "Error getting Expenses"})
     }
 }
+
+exports.deleteExpenses =  (req, res) => {
+    const {id} = req.params
+    ExpenseSchema.findByIdAndDelete(id)
+    .then((expense) => {
+        res.status(200).json({message: "Expenses deleted"})
+    }).catch((error) => {
+        res.status(500).json({message: "Error while deleting"})
+    })
+
+
+}

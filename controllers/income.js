@@ -31,7 +31,7 @@ exports.addIncome = async (req, res) => {
     //  console.log(income)
 }
 
-exports.getIncomes = async (req, res) => { 
+exports.getIncomes = async (req, res) => {
    
   try{
     const incomes = await IncomeSchema.find().sort({created_at: -1})
@@ -45,7 +45,6 @@ exports.getIncomes = async (req, res) => {
 
 exports.deleteIncome = async (req, res) => {
     const {id} = req.params
-    console.log(req.params)
     IncomeSchema.findByIdAndDelete(id) 
     .then((income) => res.status(200).json({message: "Income Deleted"}))
     .catch((err) => res.status(500).json({message: err.message}))

@@ -28,3 +28,12 @@ exports.addExpenses = async (req, res) => {
     }
 
 }
+
+exports.getExpenses = async (req, res) => {
+    try{
+      const expenses = await ExpenseSchema.find().sort({created_at: -1})
+      res.status(200).json(expenses)
+    }catch(error){
+      res.status(500).json({message: "Error getting Expenses"})
+    }
+}
